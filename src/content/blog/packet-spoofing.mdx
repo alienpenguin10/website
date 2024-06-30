@@ -1,0 +1,62 @@
+---
+title: 'Packet Spoofing'
+description: 'This article explains hyperparameter tuning techniques, focusing on grid search and random search, to optimize the performance of machine learning models, especially Support Vector Machines (SVMs).'
+pubDate: 'Jul 02 2022'
+heroImage: '../../assets/images/sniffing-spoofing.png'
+category: 'Cyber'
+tags: ['cybersecurity']
+---
+## Packet Spoofing
+We can't use typical socket programming for packet spoofing due to limited flexibility. 
+In socket programming we will only have controls over few selected fields in the header. 
+For example, we can set the destination IP address but not the source IP address.
+
+For instance consider the following attacks:
+
+1. TCP SYN flooding : flooding with randomly generated source IP address
+2. TCP session hijacking attack : Attackers use victim's IP address, correct sequence numbers and port numbers in the TCP header.
+3. DNS cache poisoning attack : Attackers need to send fake DNS replies to the victim but the packet should carry the legitimate DNS server's IP address in the source IP field.
+
+All of these attacks involve packet spoofing technique, in which some critical information in the packet is forged.
+
+To overcome the issues with socket programming for spoofing we use a special type of socket called raw socket. This enables us to set arbitrary values for header fields.
+
+There are two steps in packet spoofing:
+
+1. Constructing the packet in a buffer
+2. Sending the packet out
+
+### Sending the packet out
+We will first look at how to send a packet before actually constructing one using raw sockets.
+
+### Constructing ICMP Packets
+We need to fill the buffer with header information and payload data.
+
+1. Create a buffer of size 1500, fill it with zeros and then fill in the ICMP header. Note that payload data is optional for ICMP.
+
+
+2. We then fill in the IP header by setting the source and destination IP address.
+
+
+3. We can pass the pointer of the buffer to the send_raw_ip_packet() function to send our spoofed packet.
+
+After executing the above code we can use WireShark to observe the execution result.
+
+### Constructing UDP Packets
+This is similar to above except we now include payload data. Here we try to construct a UDP packet that sends out a message "Hello World!" to the server using a spoofed IP address.
+
+
+1. Create a buffer for the IP packet, and then calculate the offset for the payload.
+
+
+2. We then place data (a string) into the payload region inside the buffer.
+
+3. Then fill in the UDP headers.
+
+
+4. Then fill in the IP headers
+
+
+5. Finally, like before pass the pointer of the buffer to the send_raw_ip_packet() function to send our spoofed packet.
+
+After executing above code we can run UDP server program on the server machine, and simply print out whatever received. nc -luv 9090 will do this!

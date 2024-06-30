@@ -1,0 +1,29 @@
+---
+title: 'Packet Sniffing'
+description: 'This article explains hyperparameter tuning techniques, focusing on grid search and random search, to optimize the performance of machine learning models, especially Support Vector Machines (SVMs).'
+pubDate: 'Feb 01 2024'
+heroImage: '../../assets/images/packet-sniffer.png'
+category: 'Cyber'
+tags: ['cybersecurity']
+---
+## Packet Spoofing
+Packet sniffing describes the process of capturing live data as they flow across a network. 
+It is used by both white and black hats. 
+Network administrators use it to understand characteristics and diagnose faulty networks and configurations. 
+It is also used by intruders to do reconnaissance and exploitation. 
+In this article we will explore how packet sniffers can be implemented.
+
+Receiving packets using Raw Sockets
+
+1. Create a raw socket: normal sockets passes the packet through network protocol stack but raw sockets will pass a copy of the packet including the link-layer header, to the socket, first before passing the packet to the protocol stack.
+2. Choose the protocol: We need to specify what type of protocol we would like sniff. In the third argument of the Socket() system call. we specify the protocol. Here we set ETH_P_ALL to capture packets of all protocol types. If we would like to capture IP packets would need to set to ETH_P_IP. htons() is related to byte orders which we will explore later.
+3. Enable promiscuous mode: If not socket will only get packets that is destined for this computer. Turning on promiscuous mode will let in all the packets in the network. Therefore we use setsockopt() to set the option on the socket.
+4. Getting captured packets: We use recvfrom() to wait for packets , once a packet arrives, the raw socket will receive a copy of it through this API.
+
+Observant readers would have noticed few problems with raw sockets:
+- Harder to packet filtering
+- Not portable across different operating systems
+- May not be able to capture all the packets under heavy traffic
+
+Thus now we explore pcap (Packet Capture) API as a solution to above problems. 
+One of the features of pcap is that it allows programmers to specify filtering rules using human readable boolean expressions that then the compiler translates to BPF that is used by kernel.
