@@ -1,0 +1,46 @@
+---
+import ListCategories from '@/components/ListCategories'
+import ListPosts from '@/components/ListPosts'
+import TitlePage from '@/components/TitlePage'
+import BaseLayout from '@/layouts/BaseLayout'
+import { getPosts } from '@/utils'
+import Aboutme from '@/components/Aboutme'
+
+const MAX_POSTS = 5 // max number of posts to show on the home page
+const posts = await getPosts(MAX_POSTS)
+---
+
+<BaseLayout title='about me'>
+	<TitlePage title='About Me' />
+	<ListCategories />
+    <div className="astro-page">
+        <h1>Welcome to Varniethan's Astro Page!</h1>
+        <p>Hello, my name is Varniethan. I am a second-year undergraduate studying Computer Science and Artificial Intelligence at the University of Bath.</p>
+        <p>As a highly motivated student with a deep passion for AI and emerging technologies, as well as being the chair of the Cybersecurity Society, I am on the lookout for a placement which will propel my skills and knowledge advancement.</p>
+        
+        <h2>Explore More</h2>
+        <p>Feel free to explore my CV to learn more about my background, qualifications, and experience:</p>
+        <a href="path_to_your_cv.pdf" target="_blank" rel="noopener noreferrer">Varniethan Ketheeswaran CV</a>
+  
+        <p>You'll find a diverse range of projects that reflect my interest in AI, Cybersecurity, and Software Engineering on my GitHub:</p>
+        <a href="https://github.com/your_github_username" target="_blank" rel="noopener noreferrer">My GitHub</a>
+      </div>
+</BaseLayout>
+
+<script>
+	import { animate } from 'motion'
+	const showAnimations = localStorage.getItem('animations') === 'true'
+
+	if (showAnimations) {
+		animate(
+			'.title',
+			{ y: [80, 0], opacity: [0, 1] },
+			{
+				duration: 2.5,
+				opacity: { duration: 3 },
+
+				offset: [0, 0.55, 0.75]
+			}
+		)
+	}
+</script>
