@@ -1,0 +1,72 @@
+---
+heroImage: /src/assets/images/placeholder-hero.jpg
+category: Reinforcement Learning
+description: 'SARSA algorithm '
+pubDate: 2024-07-13T23:00:00.000Z
+tags:
+  - deeplearning
+title: 'SARSA Algorithm'
+---
+
+import Latex from '../../components/Latex.astro'
+
+## Introduction
+
+SARSA is a value based, on-policy algorithm.
+Recall the difference between policy-based and value-based algorithms.
+Policy-based algorithms built a representation of a policy <Latex formula="\pi : s \rightarrow a" inline={true}/>.
+Value-based methods evaluate state-action pairs (s, a) by learning one of the following value functions:
+
+- <Latex formula='V^{\pi}(s)' inline={true} /> used by Actor-Critic algorithm
+- <Latex formula='Q^{\pi}(s,a)' inline={true} /> used by SARSA algorithm , DQN Also on-policy algorithms
+  is where the information used to improve the current policy only depeds on the policy used to gather
+  data. Two main ideas of SARSA:
+
+1. Learning the Q-function known as Temporal Difference (TD) learning
+2. Generating the actions using Q-function
+
+### Q vs V function
+
+#### Q function <Latex formula="Q^{\pi}(s,a)" inline={true}/>
+
+< - Add - >
+
+Measures the value of state-action pairs (s, a) under a particular policy <Latex formula="\pi" inline={true}/>.
+Stores one-step lookahead value for every action a in every state s.
+This is the expected cumulative discounted reward from taking action a in state s, and then continuing to action a in the state s.
+This value given by Q function could be used as quantitive value for each action.
+For example, in chess this can be used to decide on the best move (action) to make in a paticular position (state).
+Advantage of this is that no need lookahead one-step.
+However the disadvantage is that we need data to cover all (s,a) pairs.
+This means that more data is needed to learn good Q-function estimate.
+
+#### V function <Latex formula="V^{\pi}(s)" inline={true}/>
+
+< - Add - >
+
+Measures the value of the state s under a particular policy <Latex formula="\pi" inline={true}/>.
+For example, in chess this can be used to quantify the intuition of how good or bad the board position is.
+For each of the next states <Latex formula="s'" inline={true}/>, that can be reached by choosing legal action, <Latex formula="a" inline={true}/>, we will calculate <Latex formula=" v^{\pi}(s')" inline={true}/>.
+We will then use <Latex formula="v^{\pi}(s')" inline={true}/> to select the action that will leading to the best <Latex formula="s'" inline={true}/>.
+The problem with this method is that it is time-consuming and relies on knowing the transition function.
+If we were to use <Latex formula="v^{\pi}(s)" inline={true}/> to choose actions, agents need to take each of the actions <Latex formula="a \in A_{s}" inline={true}/> in state <Latex formula="s" inline={true}/>.
+And observe the next state, <Latex formula="s'" inline={true}/>, and reward, <Latex formula="r" inline={true}/>, to calculate <Latex formula="v^{\pi}(s')" inline={true}/>
+If the action space is stochastic the agent need to repeat this process many times to get a good estimation of the expected value of taking paticular aciton.
+However an advantage of using V function is that for the same amount of data, the V function estimate will likely be better than the Q function estimate as it doesn't need much data to learn.
+
+## Evalutation Actions: Temporal Difference Learning
+
+Temporal difference (TD) learning is an iterative method that value besed RL algorithms learn <Latex formula="v^{\pi}(s)" inline={true}/> or <Latex formula="Q^{\pi}(s,a)" inline={true}/>
+
+## SARSA Algorithm
+
+< - Add - >
+
+1. Randomly initialise a neural network with parameters <Latex formula="\theta" inline={true}/> to represent the Q-function <Latex formula="Q^{\pi}(s, a:\theta)" inline={true}/>
+2. Repeat:
+   1. Use <Latex formula="Q^{\pi}(s, a:\theta)" inline={true}/> to act greedily in the environment.
+   2. Store all <Latex formula="Q^{\pi}(s,a,r,s^{'})" inline={true}/> experiences.
+   3. Use the stored experiences to update <Latex formula="Q^{\pi}(s, a : \theta)" inline={true}/> using the SARSA Bellman equation.
+3. Until convergence: agent stop improving i.e. total **undiscounted cumulative rewards** received during an episode stops changing.
+
+## SARSA Example

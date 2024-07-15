@@ -1,0 +1,60 @@
+---
+heroImage: /src/assets/images/placeholder-hero.jpg
+category: Reinforcement Learning
+description: 'What is Reinforcement Learning and how is it used? '
+pubDate: '2024-07-13T23:00:00.000Z'
+tags:
+  - deeplearning
+title: 'Reinforcement Learning: Brief Introduction'
+---
+
+## Introduction
+
+Reinforcement Learning (RL) is a powerful branch of machine learning that focuses on solving sequential decision-making problems.
+Unlike supervised learning, where an algorithm learns from labeled data, RL agents learn through interaction with an environment, receiving feedback in the form of rewards or penalties.
+
+## The RL Framework
+
+At its core, RL is modeled as a feedback control loop between an agent and its environment.
+The process follows a simple yet profound cycle: the agent observes the current state of the environment, selects an action based on its policy, and then receives a reward and transitions to a new state.
+This cycle continues until the environment reaches a terminal state or the problem is solved.
+
+## Theoretical Foundations
+
+The foundation of RL lies in Markov Decision Processes (MDPs) and optimal control theory.
+MDPs provide a mathematical framework for modeling decision-making in situations where outcomes are partly random and partly under the control of a decision-maker.
+The Markov property assumes that the next state depends only on the current state and action, not on the history of previous states and actions.
+
+## Key Components
+
+Key components of an RL system include:
+
+- States: The set of all possible situations in the environment.
+- Actions: The set of all possible moves the agent can make.
+- Rewards: The feedback signal that indicates the desirability of the most recent action.
+- Policy: A function that maps states to actions, guiding the agent's behavior.
+- Value Functions: Estimates of the expected return from a given state or state-action pair.
+- Model: An optional component that predicts the next state and reward given the current state and action.
+
+## The Goal of RL
+
+The ultimate goal of an RL agent is to learn a policy that maximizes the cumulative reward over time.
+This is often expressed as the expectation of returns over many trajectories, where a trajectory is a sequence of state-action-reward tuples in an episode.
+
+## Categories of RL Algorithms
+
+RL algorithms can be broadly categorized into three families:
+
+- Value-based methods: These focus on learning value functions to indirectly derive a policy.
+- Policy-based methods: These directly optimize the policy without necessarily learning a value function.
+- Model-based methods: These learn a model of the environment to plan and make decisions.
+
+## Deep Reinforcement Learning
+
+Deep Reinforcement Learning combines RL with deep neural networks, allowing for more complex function approximation. A notable example is the DQN (Deep Q-Network) algorithm, which uses a neural network to approximate Q-values for each action in a given state.
+
+# Benfits of RL
+
+- Lack of oracle (no correct answer for each model input)
+- Sparsity of feedback
+- Data generated during training

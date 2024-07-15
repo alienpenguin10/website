@@ -6,11 +6,13 @@ heroImage: '../../assets/images/packet-sniffing-image-1.png'
 category: 'Cyber'
 tags: ['cybersecurity']
 ---
+
 ## Packet Spoofing
-Packet sniffing describes the process of capturing live data as they flow across a network. 
-It is used by both white and black hats. 
-Network administrators use it to understand characteristics and diagnose faulty networks and configurations. 
-It is also used by intruders to do reconnaissance and exploitation. 
+
+Packet sniffing describes the process of capturing live data as they flow across a network.
+It is used by both white and black hats.
+Network administrators use it to understand characteristics and diagnose faulty networks and configurations.
+It is also used by intruders to do reconnaissance and exploitation.
 In this article we will explore how packet sniffers can be implemented.
 
 Receiving packets using Raw Sockets
@@ -21,9 +23,10 @@ Receiving packets using Raw Sockets
 4. Getting captured packets: We use recvfrom() to wait for packets , once a packet arrives, the raw socket will receive a copy of it through this API.
 
 Observant readers would have noticed few problems with raw sockets:
+
 - Harder to packet filtering
 - Not portable across different operating systems
 - May not be able to capture all the packets under heavy traffic
 
-Thus now we explore pcap (Packet Capture) API as a solution to above problems. 
+Thus now we explore pcap (Packet Capture) API as a solution to above problems.
 One of the features of pcap is that it allows programmers to specify filtering rules using human readable boolean expressions that then the compiler translates to BPF that is used by kernel.

@@ -1,14 +1,15 @@
-import { CATEGORIES } from '../src/data/categories.ts'
+// src/data/categories.ts
+var CATEGORIES = ['Cyber', 'Machine Learning', 'Reinforcement Learning', 'DevOps']
+
+// tina/config.ts
 import { defineConfig } from 'tinacms'
-
-// Your hosting provider likely exposes this as an environment variable
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
-
-export default defineConfig({
+var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || 'main'
+var config_default = defineConfig({
 	branch,
-	clientId: '9aadfce6-fa59-47e9-a7e0-0f8ce7b2ab77', // Get this from tina.io
-	token: '76a528253abb561e93dadf779f916c88014f1988', // Get this from tina.io
-
+	clientId: '9aadfce6-fa59-47e9-a7e0-0f8ce7b2ab77',
+	// Get this from tina.io
+	token: '76a528253abb561e93dadf779f916c88014f1988',
+	// Get this from tina.io
 	build: {
 		outputFolder: 'admin',
 		publicFolder: 'public'
@@ -34,7 +35,6 @@ export default defineConfig({
 						name: 'heroImage',
 						description: 'The image used for the cover of the post'
 					},
-
 					{
 						type: 'string',
 						required: true,
@@ -106,3 +106,4 @@ export default defineConfig({
 		]
 	}
 })
+export { config_default as default }

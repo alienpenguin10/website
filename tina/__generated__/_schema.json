@@ -1,0 +1,107 @@
+{
+	"version": { "fullVersion": "1.4.27", "major": "1", "minor": "4", "patch": "27" },
+	"meta": { "flags": ["experimentalData"] },
+	"collections": [
+		{
+			"name": "post",
+			"label": "Blog Post",
+			"path": "src/content/blog",
+			"format": "mdx",
+			"fields": [
+				{
+					"type": "image",
+					"label": "Cover Image",
+					"required": true,
+					"name": "heroImage",
+					"description": "The image used for the cover of the post",
+					"namespace": ["post", "heroImage"],
+					"searchable": false
+				},
+				{
+					"type": "string",
+					"required": true,
+					"name": "category",
+					"label": "Category",
+					"description": "Select an category for this post",
+					"options": ["Cyber", "Machine Learning", "Reinforcement Learning", "DevOps"],
+					"namespace": ["post", "category"],
+					"searchable": true
+				},
+				{
+					"type": "string",
+					"label": "description",
+					"required": true,
+					"name": "description",
+					"description": "A short description of the post",
+					"namespace": ["post", "description"],
+					"searchable": true
+				},
+				{
+					"type": "datetime",
+					"name": "pubDate",
+					"label": "Publication Date",
+					"required": true,
+					"namespace": ["post", "pubDate"],
+					"searchable": true
+				},
+				{
+					"name": "draft",
+					"label": "Draft",
+					"type": "boolean",
+					"description": "If this is checked the post will not be published",
+					"namespace": ["post", "draft"],
+					"searchable": true
+				},
+				{
+					"type": "string",
+					"name": "tags",
+					"required": true,
+					"label": "Tags",
+					"description": "Tags for this post",
+					"list": true,
+					"ui": { "component": "tags" },
+					"namespace": ["post", "tags"],
+					"searchable": true
+				},
+				{
+					"type": "string",
+					"name": "title",
+					"label": "Title",
+					"isTitle": true,
+					"required": true,
+					"namespace": ["post", "title"],
+					"searchable": true
+				},
+				{
+					"type": "rich-text",
+					"label": "Body",
+					"name": "SButton",
+					"isBody": true,
+					"templates": [
+						{
+							"label": "SButton",
+							"name": "SButton",
+							"fields": [
+								{
+									"type": "rich-text",
+									"label": "SButton",
+									"name": "children",
+									"isBody": true,
+									"namespace": ["post", "SButton", "SButton", "children"],
+									"searchable": true,
+									"parser": { "type": "mdx" }
+								}
+							],
+							"namespace": ["post", "SButton", "SButton"]
+						}
+					],
+					"namespace": ["post", "SButton"],
+					"searchable": true,
+					"parser": { "type": "mdx" }
+				}
+			],
+			"namespace": ["post"]
+		}
+	],
+	"config": { "media": { "tina": { "publicFolder": "", "mediaRoot": "/src/assets/images" } } }
+}

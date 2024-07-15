@@ -1,46 +1,151 @@
 ---
 import ListCategories from '@/components/ListCategories'
-import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
 import { getPosts } from '@/utils'
-import Aboutme from '@/components/Aboutme'
-
-const MAX_POSTS = 5 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+import Logo from '../assets/images/alienpenguin-logo-image-1.png'
+import EmailDark from '../assets/images/email_dark.png'
 ---
 
-<BaseLayout title='about me'>
+<BaseLayout title='About Me'>
 	<TitlePage title='About Me' />
 	<ListCategories />
-    <div className="astro-page">
-        <h1>Welcome to Varniethan's Astro Page!</h1>
-        <p>Hello, my name is Varniethan. I am a second-year undergraduate studying Computer Science and Artificial Intelligence at the University of Bath.</p>
-        <p>As a highly motivated student with a deep passion for AI and emerging technologies, as well as being the chair of the Cybersecurity Society, I am on the lookout for a placement which will propel my skills and knowledge advancement.</p>
-        
-        <h2>Explore More</h2>
-        <p>Feel free to explore my CV to learn more about my background, qualifications, and experience:</p>
-        <a href="path_to_your_cv.pdf" target="_blank" rel="noopener noreferrer">Varniethan Ketheeswaran CV</a>
-  
-        <p>You'll find a diverse range of projects that reflect my interest in AI, Cybersecurity, and Software Engineering on my GitHub:</p>
-        <a href="https://github.com/your_github_username" target="_blank" rel="noopener noreferrer">My GitHub</a>
-      </div>
+	<div class='about-container'>
+		<img src={Logo.src} alt='Logo' class='logo' />
+		<div class='intro-section'>
+			<p>
+				Hello, my name is Varniethan. I am an undergraduate Computer Science and Artifical
+				Intelligence student at the University of Bath, junior full-stack software engineer at
+				Ditchcarbon.
+			</p>
+		</div>
+		<hr class='divider' />
+		<div class='details-section'>
+			<p>
+				I am deeply passionate about artificial intelligence and cybersecurity. My expertise spans
+				multiple programming languages including Python, C, Java, and Ruby on Rails. I have hands-on
+				experience in machine learning frameworks such as Keras, TensorFlow, and Scikit-learn, as
+				well as proficiency in cybersecurity tools like Kali Linux, Wireshark, and Metasploit. I'm
+				particularly interested in the intersection of AI and cybersecurity, having worked on
+				projects like intrusion detection systems. I also enjoy exploring DevOps practices, cloud
+				technologies, and data analytics, and I'm always eager to discuss and learn more about these
+				rapidly evolving fields.
+			</p>
+		</div>
+		<hr class='divider' />
+		<div class='contact-section'>
+			<h2>My email address:</h2>
+			<div class='contact-info'>
+				<img src={EmailDark.src} alt='Email' />
+			</div>
+			<hr class='divider' />
+			<div class='work-section'>
+				<h2>Some examples of my work are available on GitHub.</h2>
+				<p>
+					You'll find a diverse range of projects that reflect my interest on AI, Cybersecurity and
+					Software engineering in my GitHub. Feel free to explore my CV to learn more about my
+					background, qualifications and experience:
+				</p>
+				<div class='work-links'>
+					<a href='https://github.com/alienpenguin10' class='work-button'
+						><i class='fab fa-github'></i> GitHub</a
+					>
+					<a href='https://alienpenguin.com' class='work-button'><i class='fas fa-blog'></i> Blog</a
+					>
+					<a href='https://www.linkedin.com/in/varnie/' class='work-button'
+						><i class='fab fa-linkedin'></i> LinkedIn</a
+					>
+					<a href='https://drive.proton.me/urls/17QGBH0NB4#VAfY2WxT6Qdh' class='work-button'
+						><i class='fas fa-file-alt'></i> CV</a
+					>
+				</div>
+			</div>
+			<hr class='divider' />
+			<div class='footer-section'>
+				<p>😊 Thanks for reading and have a nice day!</p>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.about-container {
+			padding: 20px;
+			max-width: 800px;
+			margin: 0 auto;
+			color: #333;
+			font-family: Arial, sans-serif;
+		}
+
+		.logo {
+			display: block;
+			margin: 20px auto;
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			object-fit: cover;
+			background-color: #ffffff;
+			border: 2px solid #000;
+		}
+
+		.divider {
+			border: none;
+			border-top: 1px solid #ccc;
+			margin: 20px 0;
+		}
+
+		.intro-section,
+		.details-section,
+		.contact-section,
+		.work-section,
+		.footer-section {
+			margin: 20px 0;
+		}
+
+		.contact-info,
+		.work-links {
+			display: flex;
+			justify-content: center;
+			gap: 10px;
+			flex-wrap: wrap;
+		}
+
+		.work-button {
+			padding: 10px 15px;
+			background-color: #d3d3d3;
+			color: #333;
+			text-decoration: none;
+			border-radius: 5px;
+			display: flex;
+			align-items: center;
+			gap: 5px;
+			transition: background-color 0.3s ease;
+		}
+
+		.work-button:hover {
+			background-color: #a9a9a9;
+		}
+
+		.icon {
+			width: 20px;
+			height: 20px;
+		}
+
+		h2 {
+			font-size: 1.2em;
+			margin-bottom: 10px;
+			text-align: left;
+		}
+
+		p {
+			font-size: 1em;
+			line-height: 1.6;
+			text-align: left;
+		}
+
+		.footer-section p {
+			font-size: 0.9em;
+			text-align: center;
+			color: #555;
+		}
+	</style>
 </BaseLayout>
-
-<script>
-	import { animate } from 'motion'
-	const showAnimations = localStorage.getItem('animations') === 'true'
-
-	if (showAnimations) {
-		animate(
-			'.title',
-			{ y: [80, 0], opacity: [0, 1] },
-			{
-				duration: 2.5,
-				opacity: { duration: 3 },
-
-				offset: [0, 0.55, 0.75]
-			}
-		)
-	}
-</script>
